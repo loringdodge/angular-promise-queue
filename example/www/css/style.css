@@ -1,0 +1,33 @@
+/* Empty. Add your own CSS if you like */
+
+.slideLeft {
+  transform: translateX(-30px);
+  opacity: 0;
+}
+
+.slideRight {
+  transform: translateX(30px);
+  opacity: 0;
+}
+
+.slideLeft.enter, .slideRight.enter {
+  transform: translateX(0px);
+  opacity: 1;
+  transition: all 0.3s ease-out;
+}
+
+word-slide {
+  margin-top: 50px;
+  text-align: center;
+}
+
+word-slide div {
+  font-size: 24px;
+  line-height: 40px;
+}
+
+.start{
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
