@@ -121,7 +121,6 @@ angular.module('promise-queue', [])
 
       promisify(func)
         .then(function() {
-          console.log('promised')
           self.next();
         })
 

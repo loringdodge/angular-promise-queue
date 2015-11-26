@@ -2,8 +2,6 @@ angular.module('starter', ['ionic', 'promise-queue'])
 
   .directive('wordSlide', function(PromiseQueue) {
 
-    'use strict'
-
     return {
       restrict: 'E',
       link: function($scope, $element, $attrs) {
@@ -24,39 +22,36 @@ angular.module('starter', ['ionic', 'promise-queue'])
         }
 
         promiseQueue
+          .add(slideIn(elements[0]))
           .add(slideIn(elements[1]))
           .add(slideIn(elements[2]))
           .add(slideIn(elements[3]))
           .add(slideIn(elements[4]))
           .add(slideIn(elements[5]))
           .add(slideIn(elements[6]))
-          .add(slideIn(elements[7]))
-          .add(slideIn(elements[8]));
+          .add(slideIn(elements[7]));
 
-          $element.on('click', function() {
+          var startButton = document.getElementById('start');
+          angular.element(startButton).on('click', function() {
             promiseQueue.start();
           });
 
-          $scope.$on('$destroy', function() {
-            console.log("destroy");
-          });
+          function whichTransitionEvent(){
+            var t;
+            var el = document.createElement('fakeelement');
+            var transitions = {
+              'transition':'transitionend',
+              'OTransition':'oTransitionEnd',
+              'MozTransition':'transitionend',
+              'WebkitTransition':'webkitTransitionEnd'
+            }
 
-        function whichTransitionEvent(){
-          var t;
-          var el = document.createElement('fakeelement');
-          var transitions = {
-            'transition':'transitionend',
-            'OTransition':'oTransitionEnd',
-            'MozTransition':'transitionend',
-            'WebkitTransition':'webkitTransitionEnd'
-          }
-
-          for(t in transitions){
-            if( el.style[t] !== undefined ){
-              return transitions[t];
+            for(t in transitions){
+              if( el.style[t] !== undefined ){
+                return transitions[t];
+              }
             }
           }
-        }
 
       }
     }
