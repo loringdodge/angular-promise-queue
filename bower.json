@@ -12,7 +12,7 @@
   ],
   "description": "A queue for promises, packaged as an angular factory",
   "main": [
-    "angular-promise-queue.js",
+    "angular-promise-queue.js"
   ],
   "keywords": [
     "promise",
