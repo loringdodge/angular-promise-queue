@@ -6,7 +6,6 @@ angular.module('starter', ['ionic', 'promise-queue'])
       restrict: 'E',
       link: function($scope, $element, $attrs) {
 
-        /* Listen for a transition! */
         var transitionEvent = whichTransitionEvent();
 
         var elements = $element.children();
