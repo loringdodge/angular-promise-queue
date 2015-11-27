@@ -1,0 +1,27 @@
+{
+  "name": "angular-promise-queue",
+  "version": "1.0.0",
+  "homepage": "https://github.com/loringdodge/angular-promise-queue",
+  "authors": [
+    "Loring Dodge <loringdodge@gmail.com>"
+  ],
+  "ignore": [
+    "*",
+    "!angular-promise-queue.js",
+    "!README.md"
+  ],
+  "description": "A queue for promises, packaged as an angular factory",
+  "main": [
+    "angular-promise-queue.js",
+  ],
+  "keywords": [
+    "promise",
+    "javascript",
+    "queue",
+    "async",
+    "animations",
+    "angular",
+    "ionic"
+  ],
+  "license": "MIT"
+}
