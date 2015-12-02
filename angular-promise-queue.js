@@ -1,5 +1,5 @@
 angular.module('promise-queue', [])
-  .factory('PromiseQueue', function($q) {
+  .factory('PromiseQueue', ['$q', function($q) {
 
     var PromiseQueue = function (){
       this._queue = [];
@@ -142,4 +142,4 @@ angular.module('promise-queue', [])
     return PromiseQueue;
 
 
-  });
+  }]);
