@@ -4,7 +4,7 @@ angular.module('promise-queue', [])
     var PromiseQueue = function (){
       this._queue = [];
       this._pause = false;
-    }
+    };
 
     /**
      * Adds a function to the queue. It optionally accepts an array of functions
@@ -13,7 +13,7 @@ angular.module('promise-queue', [])
      * @returns {undefined}
      */
     PromiseQueue.prototype.add = function(func, instant) {
-      var instant = instant || false;
+      instant = instant || false;
 
       if(Array.isArray(func)) {
         this._queue = this._queue.concat(func);
@@ -122,7 +122,7 @@ angular.module('promise-queue', [])
       promisify(func)
         .then(function() {
           self.next();
-        })
+        });
 
     };
 
