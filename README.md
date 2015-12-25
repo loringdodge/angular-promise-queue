@@ -11,6 +11,10 @@ As an alternative to Promise Queue, you could also use the [***queue.js***](http
 
 The current version of Promise Queue is also modeled after [Bluebird Queue](https://github.com/zackiles/bluebird-queue) by zackiles.
 
+Here's the [Codepen Demo](http://codepen.io/loringdodge/pen/Kdjgde)
+
+Here's the [Blog Post](http://www.ionicbundle.com/angular-promise-queue/)
+
 ---
 #### Bower
 
