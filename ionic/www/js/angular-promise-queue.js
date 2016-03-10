@@ -1,5 +1,5 @@
 angular.module('promise-queue', [])
-  .factory('PromiseQueue', function($q) {
+  .factory('PromiseQueue', ['$q', function($q) {
 
     var PromiseQueue = function (autoStart){
       this.autoStart = autoStart || false;
@@ -15,7 +15,7 @@ angular.module('promise-queue', [])
      * @returns {undefined}
      */
     PromiseQueue.prototype.add = function(func, instant) {
-      var instant = instant || false;
+      instant = instant || false;
 
       if(Array.isArray(func)) {
         this._queue = this._queue.concat(func);
@@ -152,4 +152,4 @@ angular.module('promise-queue', [])
     return PromiseQueue;
 
 
-  });
+}]);
