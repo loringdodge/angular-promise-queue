@@ -1,6 +1,6 @@
 angular.module('starter', ['ionic', 'promise-queue'])
 
-  .directive('wordSlide', function(PromiseQueue) {
+  .directive('wordSlide', function(PromiseQueue, $timeout) {
 
     return {
       restrict: 'E',
@@ -10,7 +10,9 @@ angular.module('starter', ['ionic', 'promise-queue'])
 
         var elements = $element.children();
 
-        var promiseQueue = new PromiseQueue();
+        var useAutoStart = true;
+        
+        var promiseQueue = new PromiseQueue(useAutoStart);
 
         var slideIn = function(el){
           return function(done) {
@@ -20,19 +22,23 @@ angular.module('starter', ['ionic', 'promise-queue'])
           }
         }
 
-        promiseQueue
-          .add(slideIn(elements[0]))
-          .add(slideIn(elements[1]))
-          .add(slideIn(elements[2]))
-          .add(slideIn(elements[3]))
-          .add(slideIn(elements[4]))
-          .add(slideIn(elements[5]))
-          .add(slideIn(elements[6]))
-          .add(slideIn(elements[7]));
 
           var startButton = document.getElementById('start');
           angular.element(startButton).on('click', function() {
-            promiseQueue.start();
+
+              promiseQueue
+                .add(slideIn(elements[0]))
+                .add(slideIn(elements[1]))
+                .add(slideIn(elements[2]))
+                .add(slideIn(elements[3]));
+
+              $timeout(function(){
+                  promiseQueue
+                    .add(slideIn(elements[4]))
+                    .add(slideIn(elements[5]))
+                    .add(slideIn(elements[6]))
+                    .add(slideIn(elements[7]));
+              }, 25);
           });
 
           function whichTransitionEvent(){

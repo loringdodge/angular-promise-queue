@@ -1,9 +1,11 @@
 angular.module('promise-queue', [])
-  .factory('PromiseQueue', function($q) {
+  .factory('PromiseQueue', ['$q', function($q) {
 
-    var PromiseQueue = function (){
+    var PromiseQueue = function (autoStart){
+      this.autoStart = autoStart || false;
       this._queue = [];
       this._pause = false;
+      this._head = false;
     }
 
     /**
@@ -13,7 +15,7 @@ angular.module('promise-queue', [])
      * @returns {undefined}
      */
     PromiseQueue.prototype.add = function(func, instant) {
-      var instant = instant || false;
+      instant = instant || false;
 
       if(Array.isArray(func)) {
         this._queue = this._queue.concat(func);
@@ -27,6 +29,10 @@ angular.module('promise-queue', [])
 
       }else{
         throw new Error('No functions provided');
+      }
+
+      if(this.autoStart && !this._pause){
+        this.next();
       }
 
       return this;
@@ -116,11 +122,15 @@ angular.module('promise-queue', [])
 
       if(self._pause === true) return;
       if(self._queue.length === 0) return;
+      if(self._head === true) return;
 
       var func = self._queue.shift();
 
+      self._head = true;
+
       promisify(func)
         .then(function() {
+          self._head = false;
           self.next();
         })
 
@@ -142,4 +152,4 @@ angular.module('promise-queue', [])
     return PromiseQueue;
 
 
-  });
+}]);
